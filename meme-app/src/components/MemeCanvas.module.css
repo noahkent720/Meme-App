@@ -1,0 +1,126 @@
+.memeCanvas {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.memeDisplay {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  max-height: min(70vh, 600px);
+}
+
+.memeDisplay .memeImage {
+  display: block;
+  max-width: 100%;
+  max-height: min(70vh, 600px);
+  width: auto;
+  height: auto;
+  vertical-align: top;
+  border-radius: 8px;
+}
+
+.memeOverlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: auto;
+  border-radius: 8px;
+  cursor: crosshair;
+}
+
+.memeOverlay .memeTextWrapper {
+  position: absolute;
+  display: inline-block;
+  pointer-events: auto;
+}
+
+.memeOverlay .memeTextWrapper .memeTextBlock {
+  direction: ltr;
+  cursor: move;
+  font-weight: bold;
+  white-space: pre-wrap;
+  text-align: center;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  min-width: 24px;
+  min-height: 1em;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.memeOverlay .memeTextWrapper .memeTextEdit {
+  resize: none;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  width: 100%;
+  min-width: 24px;
+}
+
+.memeOverlay .memeTextWrapper .memeTextEdit:focus {
+  outline: none;
+}
+
+.memeOverlay .memeTextWrapper.selected .memeTextBlock {
+  box-shadow: 0 0 0 2px #ff6b6b;
+  border-radius: 4px;
+}
+
+.memeOverlay .memeTextWrapper .resizeHandle {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  background: #ff6b6b;
+  border-radius: 4px;
+  cursor: nwse-resize;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.memeOverlay .memeTextWrapper.dragging,
+.memeOverlay .memeTextWrapper.resizing {
+  cursor: grabbing;
+}
+
+.memeOverlay .memeTextWrapper.dragging .memeTextBlock,
+.memeOverlay .memeTextWrapper.resizing .memeTextBlock {
+  opacity: 0.95;
+  user-select: none;
+}
+
+.memeOverlay .memeTextWrapper.resizing .resizeHandle {
+  cursor: nwse-resize;
+}
+
+.exportCanvas {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.canvasPlaceholder {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  padding: 48px 32px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 2px dashed #2d2d2d;
+}
+
+.canvasPlaceholder p {
+  margin: 0;
+  font-weight: 600;
+}

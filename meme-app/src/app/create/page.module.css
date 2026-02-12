@@ -1,0 +1,75 @@
+.createPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 72px;
+}
+
+.pageBody {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.leftPanel {
+  width: 280px;
+  flex-shrink: 0;
+  border-right: 1px solid #2d2d2d;
+  background: #141414;
+  overflow-y: auto;
+}
+
+.canvasMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #0f0f0f;
+}
+
+.canvasContainer {
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid #2d2d2d;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: #1a1a1a;
+  border-top: 1px solid #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  z-index: 100;
+}
+
+@media (max-width: 900px) {
+  .pageBody {
+    flex-direction: column;
+  }
+
+  .leftPanel {
+    width: 100%;
+    max-height: 220px;
+    border-right: none;
+    border-bottom: 1px solid #2d2d2d;
+  }
+
+  .canvasMain {
+    padding: 16px;
+  }
+}

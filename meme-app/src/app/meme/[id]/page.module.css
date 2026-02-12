@@ -1,0 +1,277 @@
+.detailPage {
+  min-height: 100vh;
+  padding: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.backLink {
+  color: #888;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #fff;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 32px;
+}
+
+.memeSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.imageContainer {
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memeImage {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.voteSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+}
+
+.voteBtn {
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  border: 2px solid #2d2d2d;
+  background: transparent;
+  color: #666;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voteBtn:hover:not(:disabled) {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+.voteBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.voteBtn.upvote.active {
+  border-color: #4caf50;
+  background: #4caf50;
+  color: #fff;
+}
+
+.voteBtn.downvote.active {
+  border-color: #ff6b6b;
+  background: #ff6b6b;
+  color: #fff;
+}
+
+.voteScore {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  min-width: 60px;
+  text-align: center;
+}
+
+.memeInfo {
+  padding: 16px;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+}
+
+.author {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.commentsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.commentsSection h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.95rem;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  color: #fff;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.commentInput:focus {
+  outline: none;
+  border-color: #ff6b6b;
+}
+
+.commentInput::placeholder {
+  color: #666;
+}
+
+.submitBtn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.4);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.signInPrompt {
+  padding: 20px;
+  text-align: center;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment {
+  padding: 16px;
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+}
+
+.commentAuthor {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ff6b6b;
+  margin-bottom: 8px;
+}
+
+.commentBody {
+  font-size: 0.95rem;
+  color: #fff;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.commentTime {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.noComments {
+  padding: 32px;
+  text-align: center;
+  color: #666;
+  font-size: 0.95rem;
+  background: #1a1a1a;
+  border: 1px dashed #2d2d2d;
+  border-radius: 8px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 64px 24px;
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #ff6b6b;
+}
+
+.backBtn {
+  display: inline-block;
+  padding: 12px 24px;
+  margin-top: 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.backBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 107, 107, 0.4);
+}
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .voteSection {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
