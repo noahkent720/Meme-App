@@ -29,15 +29,15 @@
   top: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none;
+  pointer-events: auto;
   border-radius: 8px;
+  cursor: crosshair;
 }
 
 .meme-overlay .meme-text-block {
   position: absolute;
   pointer-events: auto;
   cursor: move;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: bold;
   white-space: pre-wrap;
   text-align: center;

@@ -8,6 +8,8 @@ const MemeCanvas = forwardRef((props, ref) => {
     selectedTextId,
     onSelectText,
     onMoveText,
+    onCanvasClick,
+    fontFamily,
     textSize,
     textColor,
     borderColor
@@ -29,7 +31,7 @@ const MemeCanvas = forwardRef((props, ref) => {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
 
     const strokeW = Math.ceil(textSize / 15)
-    ctx.font = `bold ${textSize}px Impact, sans-serif`
+    ctx.font = `bold ${textSize}px ${fontFamily}`
     ctx.fillStyle = textColor
     ctx.strokeStyle = borderColor
     ctx.lineWidth = strokeW
@@ -44,7 +46,7 @@ const MemeCanvas = forwardRef((props, ref) => {
       ctx.strokeText(text, px, py)
       ctx.fillText(text, px, py)
     })
-  }, [image, textBlocks, textSize, textColor, borderColor, ref])
+  }, [image, textBlocks, textSize, textColor, borderColor, fontFamily, ref])
 
   const handleDragStart = (e, block) => {
     e.preventDefault()
@@ -90,6 +92,14 @@ const MemeCanvas = forwardRef((props, ref) => {
     }
   }, [draggingId])
 
+  const handleOverlayClick = (e) => {
+    if (e.target !== overlayRef.current || !onCanvasClick) return
+    const rect = overlayRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width
+    const y = (e.clientY - rect.top) / rect.height
+    onCanvasClick(x, y)
+  }
+
   if (!image) {
     return (
       <div className="meme-canvas">
@@ -109,7 +119,11 @@ const MemeCanvas = forwardRef((props, ref) => {
           alt="Meme"
           className="meme-image"
         />
-        <div className="meme-overlay">
+        <div
+          className="meme-overlay"
+          onClick={handleOverlayClick}
+          role="presentation"
+        >
           {textBlocks.map((block) => (
             <div
               key={block.id}
@@ -119,6 +133,7 @@ const MemeCanvas = forwardRef((props, ref) => {
                 top: `${block.y * 100}%`,
                 transform: 'translate(-50%, -50%)',
                 fontSize: `${textSize}px`,
+                fontFamily: fontFamily,
                 color: textColor,
                 WebkitTextStroke: `${Math.ceil(textSize / 15)}px ${borderColor}`,
                 paintOrder: 'stroke fill'
@@ -129,7 +144,7 @@ const MemeCanvas = forwardRef((props, ref) => {
                 handleDragStart(e, block)
               }}
             >
-              {block.content ? block.content.toUpperCase() : (block.id === 'top' ? 'Top text' : 'Bottom text')}
+              {block.content ? block.content.toUpperCase() : 'Text'}
             </div>
           ))}
         </div>

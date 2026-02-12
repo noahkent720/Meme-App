@@ -1,12 +1,12 @@
 .bottom-toolbar {
-  height: 52px;
-  min-height: 52px;
-  background: #252526;
-  border-top: 1px solid #3c3c3c;
+  height: 72px;
+  min-height: 72px;
+  background: #1a1a1a;
+  border-top: 1px solid #2d2d2d;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 
 .toolbar-group {
@@ -16,8 +16,11 @@
 }
 
 .toolbar-label {
-  font-size: 12px;
-  color: #969696;
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   white-space: nowrap;
 }
 
@@ -25,22 +28,104 @@
   min-width: 120px;
   padding: 6px 10px;
   font-size: 13px;
-  background: #3c3c3c;
-  border: 1px solid #3c3c3c;
-  border-radius: 4px;
+  background: #252525;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
   color: #fff;
   cursor: pointer;
 }
 
 .toolbar-font-select:focus {
   outline: none;
-  border-color: #0e639c;
+  border-color: #ff6b6b;
+}
+
+.toolbar-text-group {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.toolbar-text-input {
+  width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  background: #252525;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.toolbar-text-input:focus {
+  outline: none;
+  border-color: #ff6b6b;
+}
+
+.toolbar-text-input::placeholder {
+  color: #666;
+}
+
+.toolbar-size-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar-size-row input[type="range"] {
+  width: 100px;
+  height: 6px;
+  border-radius: 3px;
+  background: #2d2d2d;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.toolbar-size-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff9f40 100%);
+  cursor: pointer;
+}
+
+.toolbar-size-row input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff9f40 100%);
+  cursor: pointer;
+  border: none;
+}
+
+.toolbar-size-value {
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  font-weight: 600;
+  min-width: 36px;
+}
+
+.toolbar-delete {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  background: transparent;
+  color: #b0b0b0;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.toolbar-delete:hover {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
 }
 
 .toolbar-divider {
   width: 1px;
-  height: 24px;
-  background: #3c3c3c;
+  height: 36px;
+  background: #2d2d2d;
+  flex-shrink: 0;
 }
 
 .toolbar-group-color {
@@ -51,8 +136,8 @@
   width: 28px;
   height: 28px;
   padding: 0;
-  border: 1px solid #3c3c3c;
-  border-radius: 4px;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
   cursor: pointer;
   background: transparent;
 }
@@ -67,23 +152,23 @@
 }
 
 .toolbar-download {
-  margin-left: auto;
-  padding: 8px 20px;
-  font-size: 13px;
-  font-weight: 600;
-  background: #0e639c;
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff9f40 100%);
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
 .toolbar-download:hover:not(:disabled) {
-  background: #1177bb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 107, 107, 0.4);
 }
 
 .toolbar-download:disabled {
-  background: #3c3c3c;
+  background: #2d2d2d;
   color: #666;
   cursor: not-allowed;
 }

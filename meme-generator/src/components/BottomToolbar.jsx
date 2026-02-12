@@ -10,9 +10,14 @@ const FONT_OPTIONS = [
 
 function BottomToolbar({
   fontFamily,
+  onFontChange,
+  selectedBlock,
+  onContentChange,
+  onDeleteBlock,
+  textSize,
   textColor,
   borderColor,
-  onFontChange,
+  onTextSizeChange,
   onTextColorChange,
   onBorderColorChange,
   onDownload,
@@ -34,6 +39,46 @@ function BottomToolbar({
             </option>
           ))}
         </select>
+      </div>
+      <div className="toolbar-divider" />
+      <div className="toolbar-group toolbar-text-group">
+        <label className="toolbar-label">Text</label>
+        <input
+          type="text"
+          className="toolbar-text-input"
+          value={selectedBlock?.content ?? ''}
+          onChange={(e) => onContentChange(e.target.value)}
+          placeholder="Enter text for selected caption"
+          maxLength={100}
+        />
+      </div>
+      {selectedBlock && onDeleteBlock && (
+        <>
+          <div className="toolbar-divider" />
+          <button
+            type="button"
+            className="toolbar-delete"
+            onClick={onDeleteBlock}
+            title="Remove caption"
+          >
+            Delete
+          </button>
+        </>
+      )}
+      <div className="toolbar-divider" />
+      <div className="toolbar-group">
+        <label htmlFor="toolbar-size" className="toolbar-label">Size</label>
+        <div className="toolbar-size-row">
+          <input
+            id="toolbar-size"
+            type="range"
+            min="20"
+            max="80"
+            value={textSize}
+            onChange={(e) => onTextSizeChange(Number(e.target.value))}
+          />
+          <span className="toolbar-size-value">{textSize}px</span>
+        </div>
       </div>
       <div className="toolbar-divider" />
       <div className="toolbar-group toolbar-group-color">

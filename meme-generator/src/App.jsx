@@ -1,18 +1,16 @@
 import { useState, useRef } from 'react'
 import ImageSelector from './components/ImageSelector'
 import MemeCanvas from './components/MemeCanvas'
-import TextControls from './components/TextControls'
+import BottomToolbar from './components/BottomToolbar'
 import './App.css'
 
-const defaultTextBlocks = [
-  { id: 'top', content: '', x: 0.5, y: 0.08 },
-  { id: 'bottom', content: '', x: 0.5, y: 0.92 }
-]
+const DEFAULT_FONT = 'Impact, sans-serif'
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null)
-  const [textBlocks, setTextBlocks] = useState(defaultTextBlocks)
-  const [selectedTextId, setSelectedTextId] = useState('top')
+  const [textBlocks, setTextBlocks] = useState([])
+  const [selectedTextId, setSelectedTextId] = useState(null)
+  const [fontFamily, setFontFamily] = useState(DEFAULT_FONT)
   const [textSize, setTextSize] = useState(50)
   const [textColor, setTextColor] = useState('#FFFFFF')
   const [borderColor, setBorderColor] = useState('#000000')
@@ -21,6 +19,17 @@ function App() {
   const selectedBlock = textBlocks.find(b => b.id === selectedTextId)
   const updateBlock = (id, updates) => {
     setTextBlocks(prev => prev.map(b => b.id === id ? { ...b, ...updates } : b))
+  }
+
+  const addTextBlock = (x, y) => {
+    const id = crypto.randomUUID()
+    setTextBlocks(prev => [...prev, { id, content: '', x, y }])
+    setSelectedTextId(id)
+  }
+
+  const removeTextBlock = (id) => {
+    setTextBlocks(prev => prev.filter(b => b.id !== id))
+    setSelectedTextId(prev => (prev === id ? null : prev))
   }
 
   const handleDownload = () => {
@@ -40,7 +49,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Meme Generator</h1>
-        <p>Create awesome memes with custom text</p>
+        <p>Create awesome memes with custom text headers</p>
       </header>
 
       <div className="app-body">
@@ -60,6 +69,8 @@ function App() {
               selectedTextId={selectedTextId}
               onSelectText={setSelectedTextId}
               onMoveText={updateBlock}
+              onCanvasClick={addTextBlock}
+              fontFamily={fontFamily}
               textSize={textSize}
               textColor={textColor}
               borderColor={borderColor}
@@ -69,12 +80,12 @@ function App() {
       </div>
 
       <footer className="toolbar">
-        <TextControls
-          textBlocks={textBlocks}
-          selectedTextId={selectedTextId}
+        <BottomToolbar
+          fontFamily={fontFamily}
+          onFontChange={setFontFamily}
           selectedBlock={selectedBlock}
-          onSelectText={setSelectedTextId}
           onContentChange={(content) => selectedBlock && updateBlock(selectedBlock.id, { content })}
+          onDeleteBlock={selectedBlock ? () => removeTextBlock(selectedBlock.id) : null}
           textSize={textSize}
           textColor={textColor}
           borderColor={borderColor}
