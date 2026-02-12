@@ -34,26 +34,71 @@
   cursor: crosshair;
 }
 
-.meme-overlay .meme-text-block {
+.meme-overlay .meme-text-wrapper {
   position: absolute;
+  display: inline-block;
   pointer-events: auto;
+}
+
+.meme-overlay .meme-text-wrapper .meme-text-block {
+  direction: ltr;
   cursor: move;
   font-weight: bold;
   white-space: pre-wrap;
   text-align: center;
-  user-select: none;
-  line-height: 1.1;
-  transition: box-shadow 0.15s ease;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  min-width: 24px;
+  min-height: 1em;
+  outline: none;
+  text-transform: uppercase;
 }
 
-.meme-overlay .meme-text-block.selected {
+.meme-overlay .meme-text-wrapper .meme-text-edit {
+  resize: none;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  width: 100%;
+  min-width: 24px;
+}
+
+.meme-overlay .meme-text-wrapper .meme-text-edit:focus {
+  outline: none;
+}
+
+.meme-overlay .meme-text-wrapper.selected .meme-text-block {
   box-shadow: 0 0 0 2px #ff6b6b;
   border-radius: 4px;
 }
 
-.meme-overlay .meme-text-block.dragging {
+.meme-overlay .meme-text-wrapper .resize-handle {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  background: #ff6b6b;
+  border-radius: 4px;
+  cursor: nwse-resize;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.meme-overlay .meme-text-wrapper.dragging,
+.meme-overlay .meme-text-wrapper.resizing {
   cursor: grabbing;
+}
+
+.meme-overlay .meme-text-wrapper.dragging .meme-text-block,
+.meme-overlay .meme-text-wrapper.resizing .meme-text-block {
   opacity: 0.95;
+  user-select: none;
+}
+
+.meme-overlay .meme-text-wrapper.resizing .resize-handle {
+  cursor: nwse-resize;
 }
 
 .export-canvas {

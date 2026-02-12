@@ -12,7 +12,6 @@ function BottomToolbar({
   fontFamily,
   onFontChange,
   selectedBlock,
-  onContentChange,
   onDeleteBlock,
   textSize,
   textColor,
@@ -39,18 +38,6 @@ function BottomToolbar({
             </option>
           ))}
         </select>
-      </div>
-      <div className="toolbar-divider" />
-      <div className="toolbar-group toolbar-text-group">
-        <label className="toolbar-label">Text</label>
-        <input
-          type="text"
-          className="toolbar-text-input"
-          value={selectedBlock?.content ?? ''}
-          onChange={(e) => onContentChange(e.target.value)}
-          placeholder="Enter text for selected caption"
-          maxLength={100}
-        />
       </div>
       {selectedBlock && onDeleteBlock && (
         <>

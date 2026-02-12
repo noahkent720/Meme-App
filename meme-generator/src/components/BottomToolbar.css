@@ -40,31 +40,6 @@
   border-color: #ff6b6b;
 }
 
-.toolbar-text-group {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.toolbar-text-input {
-  width: 200px;
-  padding: 8px 12px;
-  border: 1px solid #2d2d2d;
-  border-radius: 8px;
-  background: #252525;
-  color: #fff;
-  font-size: 0.9rem;
-}
-
-.toolbar-text-input:focus {
-  outline: none;
-  border-color: #ff6b6b;
-}
-
-.toolbar-text-input::placeholder {
-  color: #666;
-}
-
 .toolbar-size-row {
   display: flex;
   align-items: center;

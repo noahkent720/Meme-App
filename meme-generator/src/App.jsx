@@ -23,7 +23,7 @@ function App() {
 
   const addTextBlock = (x, y) => {
     const id = crypto.randomUUID()
-    setTextBlocks(prev => [...prev, { id, content: '', x, y }])
+    setTextBlocks(prev => [...prev, { id, content: '', x, y, fontSize: textSize }])
     setSelectedTextId(id)
   }
 
@@ -47,11 +47,6 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>Meme Generator</h1>
-        <p>Create awesome memes with custom text headers</p>
-      </header>
-
       <div className="app-body">
         <aside className="left-panel">
           <ImageSelector
@@ -69,6 +64,8 @@ function App() {
               selectedTextId={selectedTextId}
               onSelectText={setSelectedTextId}
               onMoveText={updateBlock}
+              onResizeText={(id, fontSize) => updateBlock(id, { fontSize })}
+              onContentChange={(id, content) => updateBlock(id, { content })}
               onCanvasClick={addTextBlock}
               fontFamily={fontFamily}
               textSize={textSize}
@@ -80,16 +77,21 @@ function App() {
       </div>
 
       <footer className="toolbar">
-        <BottomToolbar
+          <BottomToolbar
           fontFamily={fontFamily}
           onFontChange={setFontFamily}
           selectedBlock={selectedBlock}
-          onContentChange={(content) => selectedBlock && updateBlock(selectedBlock.id, { content })}
           onDeleteBlock={selectedBlock ? () => removeTextBlock(selectedBlock.id) : null}
-          textSize={textSize}
+          textSize={selectedBlock ? (selectedBlock.fontSize ?? textSize) : textSize}
           textColor={textColor}
           borderColor={borderColor}
-          onTextSizeChange={setTextSize}
+          onTextSizeChange={(size) => {
+            if (selectedBlock) {
+              updateBlock(selectedBlock.id, { fontSize: size })
+            } else {
+              setTextSize(size)
+            }
+          }}
           onTextColorChange={setTextColor}
           onBorderColorChange={setBorderColor}
           onDownload={handleDownload}
